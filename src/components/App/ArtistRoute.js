@@ -1,7 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const ArtistRoute = () => {
-  return <div>Artist: Diana Krall</div>;
+  const accessToken = useSelector((state) => state.auth.token);
+  return accessToken;
 };
 
 export default ArtistRoute;

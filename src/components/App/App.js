@@ -9,9 +9,32 @@ import {
 import GlobalStyles from "./GlobalStyles";
 import ArtistRoute from "./ArtistRoute";
 
+import { useDispatch } from "react-redux";
+import {
+  requestAccessToken,
+  receiveAccessToken,
+  receiveAccessTokenError,
+} from "../../actions";
+
 const DEFAULT_ARTIST_ID = "5z1VAFwT35EVvCp1XlZZuL";
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(requestAccessToken());
+
+    fetch("/spotify_access_token")
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json);
+        dispatch(receiveAccessToken(json.access_token));
+      })
+      .catch((err) => {
+        console.error(err);
+        dispatch(receiveAccessTokenError());
+      });
+  }, []);
   return (
     <Router>
       <Switch>
