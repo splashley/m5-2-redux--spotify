@@ -9,6 +9,7 @@ span {
   padding: 0;
   border: 0;
   vertical-align: baseline;
+  background-color: #0b0f14;
 }
 
 /* GLOBAL STYLES */
